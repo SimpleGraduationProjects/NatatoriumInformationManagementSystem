@@ -4,7 +4,7 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:task="http://www.springframework.org/schema/task" 
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/aop     http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
@@ -22,10 +22,10 @@
 	<!-- 数据源配置 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<!-- 需要修改的配置地方 mysql -->
-		<property name="url" value="jdbc:mysql://localhost:3306/graduation_zdbgbhwk?characterEncoding=UTF-8" />
+		<property name="url" value="jdbc:mysql://localhost:3306/graduation_158_zdbgbhwk?characterEncoding=UTF-8" />
 		<property name="username" value="root" />
 		<property name="password" value="123456" />
-		
+
 		<property name="filters" value="stat" />
 		<property name="maxActive" value="80" />
 		<property name="initialSize" value="1" />
@@ -45,32 +45,32 @@
 			<ref local="dataSource" />
 		</property>
 	</bean>
-	<!-- jdbc事务管理器 -->  
-    <bean id="transactionManager"  
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
-        <property name="dataSource">  
-            <ref local="dataSource" />  
-        </property>  
-    </bean>  
-    <!--事务模板 -->  
-    <bean id="transactionTemplate"  
-        class="org.springframework.transaction.support.TransactionTemplate">  
-        <property name="transactionManager">  
-            <ref local="transactionManager" />  
-        </property>  
-        <!--ISOLATION_DEFAULT 表示由使用的数据库决定  -->  
-        <property name="isolationLevelName" value="ISOLATION_DEFAULT"/>  
-        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>  
-        <!-- <property name="timeout" value="30"/> -->  
-    </bean>  
-    <!-- db操作类 -->
-    <bean id="db"  
-        class="com.sxl.util.DBHelper">  
-        <property name="jdbcTemplate">  
-            <ref local="jdbcTemplate" />  
+	<!-- jdbc事务管理器 -->
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref local="dataSource" />
         </property>
-        <property name="transactionTemplate">  
-            <ref local="transactionTemplate" />  
+    </bean>
+    <!--事务模板 -->
+    <bean id="transactionTemplate"
+        class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager">
+            <ref local="transactionManager" />
+        </property>
+        <!--ISOLATION_DEFAULT 表示由使用的数据库决定  -->
+        <property name="isolationLevelName" value="ISOLATION_DEFAULT"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+        <!-- <property name="timeout" value="30"/> -->
+    </bean>
+    <!-- db操作类 -->
+    <bean id="db"
+        class="com.sxl.util.DBHelper">
+        <property name="jdbcTemplate">
+            <ref local="jdbcTemplate" />
+        </property>
+        <property name="transactionTemplate">
+            <ref local="transactionTemplate" />
         </property>
     </bean>
 </beans>
